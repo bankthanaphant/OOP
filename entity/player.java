@@ -10,12 +10,12 @@ import main.Gamepanel;
 import main.KeyHandler;
 
 public class player extends entity {
-   Gamepanel gamepanel;
-   KeyHandler keyHandler;
-   public int score = 0;
-   public int level = 1;
-   public int exp = 0;
-   public int expToNextLevel = 10;
+   private Gamepanel gamepanel;
+   private KeyHandler keyHandler;
+   private int score = 0;
+   private int level = 1;
+   private int exp = 0;
+   private int expToNextLevel = 10;
    private int baseWidth = 70;
    private int baseHeight = 70;
    private double scale = 1.0;
@@ -89,6 +89,22 @@ public class player extends entity {
 
    public int getPlayerSize() {
       return level;
+   }
+
+   public int getScore() {
+      return score;
+   }
+
+   public int getLevel() {
+      return level;
+   }
+
+   public int getExp() {
+      return exp;
+   }
+
+   public int getExpToNextLevel() {
+      return expToNextLevel;
    }
 
    public void getPlayerImg() {
@@ -173,7 +189,7 @@ public class player extends entity {
 
    public void draw(Graphics2D g2) {
       BufferedImage img = getCurrentImage();
-      
+
       if (img != null) {
          g2.drawImage(img, this.x, this.y, getCurrentWidth(), getCurrentHeight(), null);
       }
@@ -205,7 +221,7 @@ public class player extends entity {
    // ⭐⭐ วาดขอบเขตผู้เล่น (สำหรับดูขนาด) ⭐⭐
    private void drawPlayerBounds(Graphics2D g2) {
       g2.setColor(Color.GREEN);
-      g2.drawRect(this.x,this.y,getCurrentWidth(),getCurrentHeight());
+      g2.drawRect(this.x, this.y, getCurrentWidth(), getCurrentHeight());
    }
 
    // ⭐⭐ เพิ่ม method สำหรับ ObjectManager ใช้ตรวจสอบขนาด ⭐⭐

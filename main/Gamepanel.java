@@ -16,13 +16,13 @@ import system.Spawner;
 import system.UIManager;
 
 public class Gamepanel extends JPanel implements Runnable {
-   public int originalTilesize = 16;
-   public int scale = 4;
-   public int tileSize;
-   public int maxScreenCol;
-   public int maxScreenRow;
-   public int screenWidth;
-   public int screenHeight;
+   private int originalTilesize = 16;
+   private int scale = 4;
+   private int tileSize;
+   private int maxScreenCol;
+   private int maxScreenRow;
+   private int screenWidth;
+   private int screenHeight;
    public player player;
 
    public enum Gamestate {
@@ -33,12 +33,12 @@ public class Gamepanel extends JPanel implements Runnable {
    private Gamestate currentGameState = Gamestate.PLAYING;
    private UIManager uiManager;
    private int winScore = 60;
-   int fps;
-   KeyHandler keyH;
-   Thread gThread;
-   ObjectManager objectManager;
-   Spawner spawner;
-   Sound music, soundeffect;
+   private int fps;
+   private KeyHandler keyH;
+   private Thread gThread;
+   private ObjectManager objectManager;
+   private Spawner spawner;
+   private Sound music, soundeffect;
 
    public Gamepanel() {
       this.tileSize = this.originalTilesize * this.scale;
@@ -128,7 +128,7 @@ public class Gamepanel extends JPanel implements Runnable {
    }
 
    private void checkWinCondition() {
-      if (player.score >= winScore) {
+      if (player.getScore() >= winScore) {
          setGameState(Gamestate.WIN);
          stopMusic();
          playSE(4);

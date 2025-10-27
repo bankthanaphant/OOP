@@ -1,31 +1,45 @@
 package entity;
+
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class entity {
-   public int x;
-   public int y;
-   public int speed;
-   public BufferedImage left1, left2, right1, right2;
-   public String direction;
+   protected int x;
+   protected int y;
+   protected int speed;
+   protected BufferedImage left1, left2, right1, right2;
+   protected String direction;
 
-   public int spriteCounter = 0 ;
-   public int spriteNum = 1 ;
+   protected int spriteCounter = 0;
+   protected int spriteNum = 1;
 
-   public Rectangle solidArea ;
-    public int getSolidAreaX() {
-      return x + solidArea.x;
+   protected Rectangle solidArea;
+
+   public int getX() {
+      return x;
    }
-   
-   public int getSolidAreaY() {
-      return y + solidArea.y;
+
+   public int getY() {
+      return y;
    }
-   
-   public int getSolidAreaWidth() {
-      return solidArea.width;
+
+   public int getSpeed() {
+      return speed;
    }
-   
-   public int getSolidAreaHeight() {
-      return solidArea.height;
+
+   public String getDirection() {
+      return direction;
+   }
+
+   public Rectangle getSolidArea() {
+      return solidArea;
+   }
+
+   public int getSpriteCounter() {
+      return spriteCounter;
+   }
+
+   public int getSpriteNum() {
+      return spriteNum;
    }
 }

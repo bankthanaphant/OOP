@@ -10,9 +10,9 @@ import javax.imageio.ImageIO;
 import main.Gamepanel;
 
 public class Fish extends entity {
-   public int size;
-   public int value;
-   public boolean isPredater;
+   protected int size;
+   protected int value;
+   protected boolean isPredater;
    protected double scaleX = 1.0;
    protected double scaleY = 1.0;
 
@@ -69,6 +69,26 @@ public class Fish extends entity {
 
    public int getDrawH() {
       return (int) ((20 + size * 8) * scaleY);
+   }
+
+   public int getSize() {
+      return size;
+   }
+
+   public int getValue() {
+      return value;
+   }
+
+   public boolean isPredator() {
+      return isPredater;
+   }
+
+   public double getScaleX() {
+      return scaleX;
+   }
+
+   public double getScaleY() {
+      return scaleY;
    }
 
    public void draw(Graphics2D g2) {

@@ -9,13 +9,18 @@ import entity.player;
 import main.Gamepanel;
 
 public class ObjectManager {
-    public final List<Fish> fishes = new ArrayList<>();
+    private final List<Fish> fishes = new ArrayList<>();
 
     private static final int DESPAWN_OFFSCREEN_FRAMES = 90; // อยู่นอกจอเกินนี้จะถูกลบ
     private final Map<Fish, Integer> offscreenCounters = new IdentityHashMap<>();
 
-    public void add(Fish f) { fishes.add(f); }
-    public int count() { return fishes.size(); }
+    public void add(Fish f) {
+        fishes.add(f);
+    }
+
+    public int count() {
+        return fishes.size();
+    }
 
     public void updateAll(Gamepanel gp) {
         for (int i = fishes.size() - 1; i >= 0; --i) {
@@ -43,24 +48,22 @@ public class ObjectManager {
     }
 
     private boolean checkCollision(Fish fish, player player) {
-        if (fish.solidArea == null || player.solidArea == null) {
+        if (fish.getSolidArea() == null || player.getSolidArea() == null) {
             return false;
         }
-        
+
         Rectangle fishBounds = new Rectangle(
-            fish.x + fish.solidArea.x,
-            fish.y + fish.solidArea.y,
-            fish.solidArea.width,
-            fish.solidArea.height
-        );
-        
+                fish.getX() + fish.getSolidArea().x,
+                fish.getY() + fish.getSolidArea().y,
+                fish.getSolidArea().width,
+                fish.getSolidArea().height);
+
         Rectangle playerBounds = new Rectangle(
-            player.x + player.solidArea.x,
-            player.y + player.solidArea.y,
-            player.solidArea.width,
-            player.solidArea.height
-        );
-        
+                player.getX() + player.getSolidArea().x,
+                player.getY() + player.getSolidArea().y,
+                player.getSolidArea().width,
+                player.getSolidArea().height);
+
         return fishBounds.intersects(playerBounds);
     }
 
@@ -70,10 +73,10 @@ public class ObjectManager {
             fishes.remove(fishIndex);
             offscreenCounters.remove(fish);
             gp.playSE(1);
-            System.out.println("Player ate a fish! Size: " + fish.size);
-        } 
+            System.out.println("Player ate a fish! Size: " + fish.getSize());
+        }
         // ปลากินผู้เล่นได้ (ถ้าเป็น predator หรือใหญ่กว่า) // Game Over หรือเสียชีวิต
-        else if (fish.isPredater || fish.size > player.getPlayerSize()) {
+        else if (fish.isPredator() || fish.getSize() > player.getPlayerSize()) {
             System.out.println("Player was eaten by fish! Game Over");
             gp.setGameState(Gamepanel.Gamestate.GAME_OVER);
             gp.stopMusic();
@@ -96,13 +99,21 @@ public class ObjectManager {
         int drawW = f.getDrawW();
         int drawH = f.getDrawH();
 
-        int left = f.x;
-        int right = f.x + drawW;
-        int top = f.y;
-        int bottom = f.y + drawH;
+        int left = f.getX();
+        int right = f.getY() + drawW;
+        int top = f.getY();
+        int bottom = f.getY() + drawH;
 
         boolean overlapX = right >= 0 && left <= W;
         boolean overlapY = bottom >= 0 && top <= H;
         return overlapX && overlapY;
+    }
+
+    public List<Fish> getFishes() {
+        return Collections.unmodifiableList(fishes);
+    }
+
+    public int getFishCount() {
+        return fishes.size();
     }
 }

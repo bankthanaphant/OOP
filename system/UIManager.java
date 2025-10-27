@@ -16,9 +16,9 @@ public class UIManager {
     public void drawPlayingUI(Graphics2D g2, player player) {
         g2.setColor(Color.WHITE);
         g2.setFont(new Font("Arial", Font.BOLD, 16));
-        g2.drawString("Score: " + player.score, 10, 20);
-        g2.drawString("Level: " + player.level, 10, 40);
-        g2.drawString("EXP: " + player.exp + "/" + player.expToNextLevel, 10, 60);
+        g2.drawString("Score: " + player.getScore(), 10, 20);
+        g2.drawString("Level: " + player.getLevel(), 10, 40);
+        g2.drawString("EXP: " + player.getExp() + "/" + player.getExpToNextLevel(), 10, 60);
         g2.drawString("Size: " + player.getPlayerSize(), 10, 80);
     }
 
@@ -34,7 +34,7 @@ public class UIManager {
 
         g2.setColor(Color.WHITE);
         g2.setFont(new Font("Arial", Font.BOLD, 24));
-        String scoreText = "Final Score: " + player.score;
+        String scoreText = "Final Score: " + player.getScore();
         int scoreWidth = g2.getFontMetrics().stringWidth(scoreText);
         g2.drawString(scoreText, (gp.getWidth() - scoreWidth) / 2, gp.getHeight() / 2);
 
@@ -61,7 +61,7 @@ public class UIManager {
         g2.setColor(Color.WHITE);
         g2.setFont(new Font("Arial", Font.BOLD, 24));
         String reasonText = "";
-        if (player.score >= winScore) {
+        if (player.getScore() >= winScore) {
             reasonText = "Reached " + winScore + " points!";
         }
         int reasonWidth = g2.getFontMetrics().stringWidth(reasonText);
@@ -69,8 +69,8 @@ public class UIManager {
 
         // สถิติ
         g2.setFont(new Font("Arial", Font.PLAIN, 20));
-        g2.drawString("Final Score: " + player.score, gp.getWidth() / 2 - 100, gp.getHeight() / 2 + 20);
-        g2.drawString("Final Level: " + player.level, gp.getWidth() / 2 - 100, gp.getHeight() / 2 + 50);
+        g2.drawString("Final Score: " + player.getScore(), gp.getWidth() / 2 - 100, gp.getHeight() / 2 + 20);
+        g2.drawString("Final Level: " + player.getLevel(), gp.getWidth() / 2 - 100, gp.getHeight() / 2 + 50);
 
         // ข้อความเริ่มใหม่
         g2.setColor(Color.YELLOW);

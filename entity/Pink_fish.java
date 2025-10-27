@@ -12,7 +12,6 @@ import main.Gamepanel;
 
 public class Pink_fish extends Fish {
 
-   // --- พารามิเตอร์พฤติกรรม (ปรับได้ตามฟีล) ---
    private final Random rng = new Random();
    private double px, py; // ตำแหน่งแบบ double (กัน bias การปัดเศษ)
    private double vx, vy; // ความเร็วแบบเวกเตอร์
